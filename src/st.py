@@ -12,8 +12,8 @@ def give_idx(p, x):
     Returns:
         lst: list of indexes.
     """    
-    s_tree = STree(x)
-    return s_tree.find_all(p)
+    s_tree = Tree(x)
+    return sorted(s_tree.find_all(p))
 
 def sam_out(fasta, fastq):
     """Function that prints a simple SAM format in the terminal.

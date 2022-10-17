@@ -30,7 +30,7 @@ class Tree():
             
             while u.depth == d and input[d + i] in u.transition_links:
             
-                u = u.transition_links[input[d + i]]
+                u = u.get_transition_link(input[d + i])
                 d = d + 1
 
                 while d < u.depth and input[u.idx + d] == input[i + d]:
@@ -95,7 +95,7 @@ class Tree():
         d = u.depth
         v = u.parent.suffix_link 
         while v.depth < d - 1:
-            v = v.transition_links[input[u.idx + v.depth + 1]]
+            v = v.get_transition_link(input[u.idx + v.depth + 1])
         if v.depth > d - 1:
             v = self.create_node(input, v, d - 1)
         u.suffix_link = v
@@ -127,9 +127,10 @@ class Tree():
                 else:
                     return []
 
-            node = node.transition_links[pattern[0]]
+            node = node.get_transition_link(pattern[0])
+
             if not node:
-                return []
+                return {}
 
         leaves = node._get_leaves()
         
@@ -159,4 +160,7 @@ class Node():
             return {self}
         else:
             return {x for n in self.transition_links.values() for x in n._get_leaves()}
+
+    def get_transition_link(self, suffix):
+        return False if suffix not in self.transition_links else self.transition_links[suffix]
 
