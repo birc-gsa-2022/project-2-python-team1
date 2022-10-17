@@ -15,17 +15,28 @@ Implement the tool `st` that does exact pattern matching using a suffix tree. Te
 
 ## Specify if you have used a linear time or quadratic time algorithm.
 
+I have implemented McCreight's O(n) algorithm.
+
 ## Insights you may have had while implementing and comparing the algorithms.
+
+There is a lot to keep track of with the various nodes and suffix links. 
 
 ## Problems encountered if any.
 
+I used a lot of time to understand the algorithm. 
+After, it was difficult to implement in python because some things in C are so different.
+
 ## Correctness
 
-*Describe experiments that verifies the correctness of your implementations.*
+I used all the fasta and fastq files from the previous project and tested wheter the output was as supposed.
 
 ## Running time
 
-*Describe experiments that verifies that your implementation of `st` uses no more time than O(n) or O(n²) (depending on the algorithm) for constructing the suffix tree and no more than O(m) for searching for a given read in it. Remember to explain your choice of test data. What are “best” and “worst” case inputs?*
+I simulated dna sequences with lengths ranging from 0 to 1000 bases. Then I recorded the time it took to build a suffix tree for each (see time.py). The sequence length was then plotted against the time recorded (see figure below).
 
-*If you have graphs that show the running time--you probably should have--you can embed them here like we did in the previous project.*
+![](figs/time.png)
+
+The running time seems linear, however, there is some noise that seems random. To solve it, I put a delay between each sequence and it didn't solve the problem. I tested 1000 times with the same sequence and the same pattern was seen again (see the figure below). Therefore, it must be something with my computer. I don't know.
+
+![](figs/time_fixed_seq_len.png)
 
