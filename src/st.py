@@ -1,13 +1,27 @@
 import argparse
-from suffix_tree import STree
+from suffix_tree import Tree
 from utils import *
 
 def give_idx(p, x):
+    """Gives indexes where pattern, p, occurs in string, x.
+
+    Args:
+        p (str): pattern.
+        x (str): string we want to search in.
+
+    Returns:
+        lst: list of indexes.
+    """    
     s_tree = STree(x)
     return s_tree.find_all(p)
 
 def sam_out(fasta, fastq):
-    """Function that output simple SAM format"""
+    """Function that prints a simple SAM format in the terminal.
+
+    Args:
+        fasta (FASTA-file)
+        fastq (FASTQ-file)
+    """    
     ps, ps_names = parse_fastq(fastq)
     xs, xs_names = fasta_recs(fasta)
 
@@ -19,8 +33,6 @@ def sam_out(fasta, fastq):
                 l = edits_to_cigar(e)
             
                 print(ps_names[i] + '\t' + xs_names[j] + '\t' + str(k + 1) + '\t' + l + '\t' + ps[i])
-
-
 
 
 def main():
